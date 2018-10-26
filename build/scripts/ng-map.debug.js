@@ -1371,12 +1371,13 @@ angular.module('ngMap', []);
     if(window.google === undefined || window.google.maps === undefined) {
       var scriptEl = document.createElement('script');
       console.log('Prelinking script loaded,' + src);
+      
+      var scriptSrc = mapsUrl +
+      (mapsUrl.indexOf('?') > -1 ? '&' : '?') +
+      'callback=lazyLoadCallback';
+      scriptEl.src = scriptSrc;
 
-      scriptEl.src = mapsUrl +
-        (mapsUrl.indexOf('?') > -1 ? '&' : '?') +
-        'callback=lazyLoadCallback';
-
-        if (!document.querySelector('script[src="' + scriptEl.src + '"]')) {
+        if (!document.querySelector('script[src="' + scriptSrc + '"]')) {
           document.body.appendChild(scriptEl);
         }
     } else {
