@@ -44,8 +44,10 @@
     window.lazyLoadCallback = function() {
       console.log('Google maps script loaded:', mapsUrl);
       $timeout(function() { /* give some time to load */
-        element.html(savedHtml);
-        $compile(element.contents())(scope);
+        if(savedHtml){
+          element.html(savedHtml);
+          $compile(element.contents())(scope);
+        }
       }, 100);
     };
 
@@ -62,8 +64,10 @@
           document.body.appendChild(scriptEl);
         }
     } else {
-      element.html(savedHtml);
-      $compile(element.contents())(scope);
+      if(savedHtml){
+        element.html(savedHtml);
+        $compile(element.contents())(scope);
+      }
     }
   };
 

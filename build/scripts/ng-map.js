@@ -1363,8 +1363,10 @@ angular.module('ngMap', []);
     window.lazyLoadCallback = function() {
       void 0;
       $timeout(function() { /* give some time to load */
-        element.html(savedHtml);
-        $compile(element.contents())(scope);
+        if(savedHtml){
+          element.html(savedHtml);
+          $compile(element.contents())(scope);
+        }
       }, 100);
     };
 
@@ -1381,8 +1383,10 @@ angular.module('ngMap', []);
           document.body.appendChild(scriptEl);
         }
     } else {
-      element.html(savedHtml);
-      $compile(element.contents())(scope);
+      if(savedHtml){
+        element.html(savedHtml);
+        $compile(element.contents())(scope);
+      }
     }
   };
 
